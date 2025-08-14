@@ -1,7 +1,16 @@
 import { defineConfig } from "unocss/vite";
 import { presetWind4, presetWebFonts } from "unocss";
+import { transformerVariantGroup } from "unocss";
+
+// - ** Light Gradient **: `linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%)`
+//   - ** Dark Gradient **: `linear-gradient(180deg, #040918 0%, #091540 100%)`
 
 export default defineConfig({
+  shortcuts: {
+    "button": "cursor-pointer font-medium",
+    "background": "bg-gradient from-[#EBF2FC] to-[#EEF8F9] dark:from-[#040918] dark:to-[#091540]"
+  },
+  transformers: [transformerVariantGroup()],
   presets: [
     presetWind4(),
     presetWebFonts({

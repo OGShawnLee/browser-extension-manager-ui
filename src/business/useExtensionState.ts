@@ -1,5 +1,5 @@
-import type { Extension } from "../business/Extension";
-import data from "./data.json";
+import type { Extension } from "./Extension";
+import data from "../db/data.json";
 import { useMemo, useState } from "react";
 
 export type ExtensionFilter = "ALL" | "ACTIVE" | "INACTIVE";
@@ -11,7 +11,7 @@ export function useExtensionState() {
     if (filter === "ALL") {
       return list;
     }
-    
+
     if (filter === "ACTIVE") {
       return list.filter((it) => it.isActive);
     }
@@ -28,7 +28,7 @@ export function useExtensionState() {
           if (it.name === extension.name) {
             return { ...it, isActive: !it.isActive };
           }
-          
+
           return it;
         });
       });

@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import type { ExtensionFilter } from "../db/useExtensionState";
+import type { ExtensionFilter } from "../business/useExtensionState";
 import GUIExtension from "./GUIExtension";
-import { useExtensionState } from "../db/useExtensionState";
+import { useExtensionState } from "../business/useExtensionState";
 import { c } from "./Util";
 
 interface GUIButtonFilterProperties {
@@ -15,8 +15,11 @@ const GUIButtonFilter: FC<GUIButtonFilterProperties> = ({ label, isActive, onFil
     <button
       className={
         c(
-          "h-10 px-6 {0} border rounded-full font-medium",
-          { on: "bg-red-700 text-white border-transparent", off: "bg-white border-neutral-300", condition: isActive }
+          "button h-10 px-6 {0} border-2 rounded-full",
+          {
+            on: "bg-red-700 text-white border-transparent",
+            off: "bg-white border-neutral-300 dark:(bg-neutral-700 border-neutral-600 text-white)", condition: isActive
+          }
         )
       }
       onClick={onFilter}
@@ -34,7 +37,7 @@ interface GUIExtensionFilterProperties {
 function GUIExtensionFilter({ filter, onFilter }: GUIExtensionFilterProperties) {
   return (
     <div className="w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
-      <h2 className="text-3xl text-neutral-900 font-black">Extensions List</h2>
+      <h2 className="text-3xl text-neutral-900 font-black dark:text-white">Extensions List</h2>
       <div className="flex flex-wrap gap-4">
         <GUIButtonFilter label="All" isActive={filter === "ALL"} onFilter={() => onFilter("ALL")} />
         <GUIButtonFilter label="Active" isActive={filter === "ACTIVE"} onFilter={() => onFilter("ACTIVE")} />

@@ -12,8 +12,8 @@ const GUIButtonToggle: FC<GUIButtonToggleProperties> = ({ isActive, onToggle }) 
     <button
       className={
         c(
-          "w-12 h-6 p-0.75 flex items-center {0} rounded-full font-medium",
-          { on: "bg-red-700", off: "bg-neutral-200", condition: isActive }
+          "button w-12 h-6 p-0.75 flex items-center {0} rounded-full transition duration-150",
+          { on: "bg-red-700 dark:bg-red-500", off: "bg-neutral-200 dark:bg-neutral-600", condition: isActive }
         )
       }
       onClick={onToggle}
@@ -41,17 +41,17 @@ interface GUIExtensionProperties {
 
 const GUIExtension: FC<GUIExtensionProperties> = ({ it, onRemove, onToggle }) => {
   return (
-    <article className="w-full p-4 grid gap-4 bg-white border border-neutral-100 rounded-xl shadow-md" key={it.name}>
+    <article className="w-full p-4 grid gap-6 bg-white border-2 border-neutral-200 rounded-xl shadow-md dark:(bg-neutral-800 border-neutral-700)" key={it.name}>
       <div className="flex items-start gap-4">
         <img className="w-12 h-12 min-h-12" src={it.logo} alt="" />
-        <div>
-          <h3 className="text-lg text-neutral-900 font-bold">{it.name}</h3>
-          <p className="text-neutral-700">{it.description}</p>
+        <div className="grid gap-2">
+          <h3 className="text-xl text-neutral-900 font-bold dark:text-white">{it.name}</h3>
+          <p>{it.description}</p>
         </div>
       </div>
       <div className="flex items-center justify-between">
         <button
-          className="h-8 px-4 border border-neutral-300 rounded-full font-medium"
+          className="button h-10 px-4 border-2 border-neutral-300 rounded-full dark:border-neutral-600"
           onClick={() => onRemove(it)}
         >
           Remove
